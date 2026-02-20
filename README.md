@@ -43,3 +43,14 @@ For testing we used libraries `pytest` (latest version), `selenium` (ver. 3.141.
     ```
 
     **Note** Use the key `-v` to show a verbose report.
+
+## Which tests could have been used
+
+1. Регистрация пользователя.
+2. Регистрация пользователя c email не по маске  `*******@*******.***`.
+3. Регистрация уже существующего пользователя.
+4. Login пользователя.
+5. Logout пользователя.
+6. Создание объявления неавторизованным пользователем.
+7. Создание объявления авторизованным пользователем.
+
