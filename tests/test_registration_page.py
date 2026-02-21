@@ -25,15 +25,13 @@ class TestRegistrationPage:
 
     def test_registration_by_existent_user(
             self,
-            sign_up_page
+            logout
     ):
         """Registration by existent user."""
-        sign_up_page.fill_sign_up_form(data.user.existent)
-        sign_up_page.logout()
-        sign_up_page.go_to_sign_in_form()
-        sign_up_page.go_to_sign_up_form()
+        logout.go_to_sign_in_form()
+        logout.go_to_sign_up_form()
 
-        sign_up_page.fill_sign_up_form(data.user.existent)
-        actual_error_message = sign_up_page.get_error_message_email_field()
+        logout.fill_sign_up_form(data.user.existent)
+        actual_error_message = logout.get_error_message_email_field()
 
         assert actual_error_message == data.ERROR_MESSAGE_EMAIL_FIELD
