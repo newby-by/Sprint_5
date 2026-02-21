@@ -13,6 +13,7 @@ def driver():
 
     yield driver
 
+    # driver is None or 
     driver.quit()
 
 
