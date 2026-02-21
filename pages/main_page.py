@@ -17,7 +17,7 @@ class MainPage(BasePage):
         return self.driver
 
     def fill_sign_up_form(self, user_data):
-        email, password  = user_data
+        email, password = user_data
 
         email_field = self.wait_element_located(RegistrationFormLocators.EMAIL)
         email_field.send_keys(email)
@@ -37,3 +37,10 @@ class MainPage(BasePage):
     def get_user_name(self):
         user_name = self.wait_element_located(MainPageLocators.USER_NAME)
         return user_name.text
+    
+    def get_error_message_email_field(self):
+        error_mes = self.wait_element_located(
+            RegistrationFormLocators.ERROR_MESSAGE_EMAIL
+        )
+
+        return error_mes.text

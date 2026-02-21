@@ -6,7 +6,7 @@ class RegistrationFormLocators:
     PASSWORD = (By.XPATH, ".//input[@name='password']")
     SUBMIT_PASSWORD = (By.XPATH, ".//input[@name='submitPassword']")
     CREATE_ACCOUNT_BUTTON = (By.XPATH, ".//button[text()='Создать аккаунт']")
-
+    ERROR_MESSAGE_EMAIL = (By.XPATH, ".//span[text()='Ошибка']")
 
 
 class MainPageLocators:

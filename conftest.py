@@ -1,6 +1,5 @@
 import chromedriver_autoinstaller
 import pytest
-from faker import Faker
 from selenium import webdriver
 
 import data
@@ -33,13 +32,12 @@ def sign_up_page(sign_in_page):
 
 
 @pytest.fixture(scope='function')
-def user_with_correct_credentials():
-    faker = Faker()
-    yield (faker.unique.email(), faker.password()) 
+def fill_sign_up_form_with_correct_data(sign_up_page):
+    sign_up_page.fill_sign_up_form(data.user.user_with_correct_credentials)
+    yield sign_up_page
 
 
 @pytest.fixture(scope='function')
-def fill_sign_up_form_with_correct_data(sign_up_page,
-                                        user_with_correct_credentials):
-    sign_up_page.fill_sign_up_form(user_with_correct_credentials)
+def fill_sign_up_form_with_incorrect_email(sign_up_page):
+    sign_up_page.fill_sign_up_form(data.user.user_with_incorrect_email)
     yield sign_up_page
