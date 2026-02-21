@@ -29,15 +29,3 @@ def sign_in_page(driver):
 def sign_up_page(sign_in_page):
     sign_in_page.go_to_sign_up_form()
     yield sign_in_page
-
-
-@pytest.fixture(scope='function')
-def fill_sign_up_form_with_correct_data(sign_up_page):
-    sign_up_page.fill_sign_up_form(data.user.user_with_correct_credentials)
-    yield sign_up_page
-
-
-@pytest.fixture(scope='function')
-def fill_sign_up_form_with_incorrect_email(sign_up_page):
-    sign_up_page.fill_sign_up_form(data.user.user_with_incorrect_email)
-    yield sign_up_page
