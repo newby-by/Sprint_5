@@ -8,7 +8,7 @@ Tomcat which gets up me early every morning.
 
 ## How to start
 
-For testing we used libraries `pytest` (latest version), `selenium` (ver. 3.141.0) and `chromedriver-autoinstaller` for autoinstalling chromedriver.
+For testing we used libraries `pytest` (latest version), `selenium` (ver. 3.141.0),  `chromedriver-autoinstaller` for autoinstalling `chromedriver` and `Faker` with ver.37.12.0 (the high version for python>=3.9).
 
 **Note** The library selenium uses `urllib3` with the version `1.26.16`.
 
@@ -54,3 +54,5 @@ For testing we used libraries `pytest` (latest version), `selenium` (ver. 3.141.
 6. Создание объявления неавторизованным пользователем.
 7. Создание объявления авторизованным пользователем.
 
+## Miscellenious
+1. [Faker docs](https://faker.readthedocs.io/en/master/)

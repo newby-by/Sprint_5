@@ -1,0 +1,39 @@
+from pages.base_page import BasePage
+from locators import MainPageLocators, RegistrationFormLocators
+
+
+class MainPage(BasePage):
+
+    def go_to_sign_in_form(self):
+        btn = self.wait_element_located(MainPageLocators.SIGNIN_SIGNUP_BUTTON)
+        btn.click()
+
+        return self.driver
+
+    def go_to_sign_up_form(self):
+        btn = self.wait_element_located(MainPageLocators.SIGNUP_BUTTON)
+        btn.click()
+
+        return self.driver
+
+    def fill_sign_up_form(self, user_data):
+        email, password  = user_data
+
+        email_field = self.wait_element_located(RegistrationFormLocators.EMAIL)
+        email_field.send_keys(email)
+        
+        self.driver.find_element(
+            *RegistrationFormLocators.PASSWORD
+        ).send_keys(password)
+        self.driver.find_element(
+            *RegistrationFormLocators.SUBMIT_PASSWORD
+        ).send_keys(password)
+
+        self.driver.find_element(
+            *RegistrationFormLocators.CREATE_ACCOUNT_BUTTON
+        ).click()
+        return self.driver
+    
+    def get_user_name(self):
+        user_name = self.wait_element_located(MainPageLocators.USER_NAME)
+        return user_name.text

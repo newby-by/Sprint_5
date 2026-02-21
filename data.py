@@ -3,3 +3,6 @@ URL_REGISTRATION = BASE_URL + 'regiatration/'
 
 # Start page
 TITLE = 'React App'
+
+## Expected user name in header
+USER_NAME = 'User.'
