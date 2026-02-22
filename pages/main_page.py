@@ -64,3 +64,8 @@ class MainPage(BasePage):
         )
 
         return error_mes.text
+    
+    def has_button_sign_in_and_sign_out(self):
+        return self.wait_element_located(
+            MainPageLocators.SIGNIN_SIGNUP_BUTTON
+        )

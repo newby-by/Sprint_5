@@ -47,3 +47,13 @@ class TestRegistrationPage:
         actual_user_name = logout.get_user_name()
 
         assert actual_user_name == data.USER_NAME
+    
+    def test_logout(
+            self,
+            registration_user
+    ):
+        """Logout by existent user."""
+        registration_user.logout()
+               
+        
+        assert registration_user.has_button_sign_in_and_sign_out()
