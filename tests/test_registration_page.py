@@ -35,3 +35,15 @@ class TestRegistrationPage:
         actual_error_message = logout.get_error_message_email_field()
 
         assert actual_error_message == data.ERROR_MESSAGE_EMAIL_FIELD
+   
+    def test_login_by_existent_user(
+            self,
+            logout
+    ):
+        """Login by existent user."""
+        logout.go_to_sign_in_form()
+        logout.fill_sign_in_form(data.user.existent)
+       
+        actual_user_name = logout.get_user_name()
+
+        assert actual_user_name == data.USER_NAME

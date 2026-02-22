@@ -16,7 +16,7 @@ class User:
     
     def __init__(self):
         self.faker = Faker()
-        self._user = (self.faker.unique.email(), self.faker.password())
+        self._user = ...
 
     @property
     def user_with_correct_credentials(self):
@@ -26,6 +26,11 @@ class User:
     def user_with_incorrect_email(self):
         return (self.faker.unique.email() + "1", self.faker.password()) 
     
+    @property
+    def new(self):
+        self._user = (self.faker.unique.email(), self.faker.password())
+        return self._user
+
     @property
     def existent(self):
         return self._user

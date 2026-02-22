@@ -34,7 +34,7 @@ def sign_up_page(sign_in_page):
 
 @pytest.fixture(scope='function')
 def registration_user(sign_up_page):
-    sign_up_page.fill_sign_up_form(data.user.existent)
+    sign_up_page.fill_sign_up_form(data.user.new)
     yield sign_up_page
 
 
