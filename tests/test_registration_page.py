@@ -1,7 +1,10 @@
 import data
+from pages.account_user_page import AccountUserPage
+from pages.create_listing_page import CreateListingPage
+from pages.main_page import MainPage
 
 
-class TestRegistrationPage:
+class TestMainPage:
     
     def test_registration_with_correct_credentials(
             self,
@@ -57,3 +60,69 @@ class TestRegistrationPage:
                
         
         assert registration_user.has_button_sign_in_and_sign_out()
+
+    def test_announcement_guest_user_login_only(
+            self,
+            main_page
+    ):
+        """Login by existent user."""
+        main_page.go_to_announcement()
+
+        assert main_page.has_title_you_should_sign_in()
+
+    def test_announcement_auth_user(
+                self,
+                logout
+        ):
+            """Login by existent user.
+            
+            Steps:
+            1. Sign in by an existence user.
+            2. Fill an announcement up:
+                name, description, price, categories, city, choose.
+            3. Choose 'new' or 'used'.
+            4. Press publish.
+
+            Asserts:
+            The name, the city and the price have expected values. 
+            """
+            logout.go_to_sign_in_form()
+            logout.fill_sign_in_form(data.user.existent)
+            main_page = MainPage(
+                logout.driver,
+                logout.driver.current_url
+            )
+            main_page.go_to_announcement()
+            anounce_page: CreateListingPage = CreateListingPage(
+                 main_page.driver,
+                 main_page.driver.current_url
+            )
+            expected_announce = data.announcement
+            (anounce_page.
+             set_name(expected_announce.name).
+             set_category(expected_announce.category).
+             set_condition_goods(expected_announce.condition).
+             set_city(expected_announce.city).
+             set_description(expected_announce.description).
+             set_price(expected_announce.price))
+            anounce_page.publish()
+
+            main_page = MainPage(
+                 anounce_page.driver,
+                 anounce_page.driver.current_url
+                 )
+            
+            main_page.scroll_up()
+            main_page.go_to_account_page()
+            account_page: AccountUserPage = AccountUserPage(
+                 anounce_page.driver,
+                 anounce_page.driver.current_url
+            )
+            account_page.scroll_to_card()
+
+            assert account_page.has_announcement(
+                 expected_announce.name,
+                 expected_announce.city,
+                 expected_announce.price
+            )
+

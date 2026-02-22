@@ -18,11 +18,15 @@ def driver():
 
 
 @pytest.fixture(scope='function')
-def sign_in_page(driver):
-    main_page = MainPage(driver, data.BASE_URL)
-    main_page.open()
-    main_page.go_to_sign_in_form()
+def main_page(driver):
+    start_page = MainPage(driver, data.BASE_URL)
+    start_page.open()
+    yield start_page
 
+
+@pytest.fixture(scope='function')
+def sign_in_page(main_page):
+    main_page.go_to_sign_in_form()
     yield main_page
 
 
