@@ -100,3 +100,8 @@ class MainPage(BasePage):
         return self.wait_element_located(
             RegistrationFormLocators.YOU_SHOULD_SIGN_IN_TITLE
         )
+    
+    def has_avatar_user_located(self):
+        return self.wait_element_located(
+            MainPageLocators.AVATAR_SVG
+        )

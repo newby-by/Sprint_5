@@ -1,3 +1,4 @@
+from conftest import driver
 import data
 from pages.account_user_page import AccountUserPage
 from pages.create_listing_page import CreateListingPage
@@ -10,11 +11,31 @@ class TestMainPage:
             self,
             sign_up_page
     ):
-        """Registration with correct credentials."""
-        sign_up_page.fill_sign_up_form(data.user.user_with_correct_credentials)
-        actual_user_name = sign_up_page.get_user_name()
+        """Registration with correct credentials.
+        
+        Steps:
+            1. Press the button «Вход и регистрация».
+            2. Press the button «Нет аккаунта».
+            3. Fill all fields up.
+            4. Press the button «Создать аккаунт».
+        Check:
+            1. Redirect to the main page app.
+            2. On the right corner near the button «Разместить объявление» 
+               display a user avatar and a the name `User`.
+        """
+        sign_up_page.fill_sign_up_form(
+            data.user.user_with_correct_credentials
+        )
+        main_page = MainPage(
+            sign_up_page.driver,
+            sign_up_page.driver.current_url
+        )
+        actual_user_name = main_page.get_user_name()
 
-        assert actual_user_name == data.USER_NAME
+        assert (
+            main_page.has_avatar_user_located() and
+            actual_user_name == data.USER_NAME
+        )
     
     def test_registration_with_incorrect_email(
             self,

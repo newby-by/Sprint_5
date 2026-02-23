@@ -16,6 +16,7 @@ class RegistrationFormLocators:
 
 class MainPageLocators:
     USER_NAME = (By.XPATH, ".//h3[contains(@class, 'profileText')]")
+    AVATAR_SVG = (By.XPATH, ".//*[@class='svgSmall']")
     SIGNIN_SIGNUP_BUTTON = (
         By.XPATH, ".//button[text()='Вход и регистрация']"
     )
