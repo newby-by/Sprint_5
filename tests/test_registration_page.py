@@ -142,7 +142,12 @@ class TestMainPage:
             self,
             main_page
     ):
-        """Login by existent user."""
+        """Login by existent user.
+        Steps:
+        1. Press the button «Разместить объявление».
+        Check:
+        The title «Чтобы разместить объявление, авторизуйтесь» is show up.
+        """
         main_page.go_to_announcement()
 
         assert main_page.has_title_you_should_sign_in()
