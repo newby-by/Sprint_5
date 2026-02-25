@@ -62,14 +62,25 @@ class TestMainPage:
             self,
             logout
     ):
-        """Registration by existent user."""
+        """Registration by existent user.
+        
+        Steps:
+        1. Press the button «Вход и регистрация».
+        2. Press the button «Нет аккаунта».
+        3. Fill the fields up with existent user data.
+        4. Press the button «Создать аккаунт».
+        Check:
+        The fields `Email`, `Пароль`, `Повторите пароль` are marked by 
+        red color and under the field `Email` showed up the message `Ошибка`.
+        """
         logout.go_to_sign_in_form()
         logout.go_to_sign_up_form()
 
         logout.fill_sign_up_form(data.user.existent)
         actual_error_message = logout.get_error_message_email_field()
 
-        assert actual_error_message == data.ERROR_MESSAGE_EMAIL_FIELD
+        assert (actual_error_message == data.ERROR_MESSAGE_EMAIL_FIELD and
+                logout.has_error_class_in_fields())
    
     def test_login_by_existent_user(
             self,
