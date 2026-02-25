@@ -1,3 +1,4 @@
+import time
 from conftest import driver
 import data
 from pages.account_user_page import AccountUserPage
@@ -111,11 +112,31 @@ class TestMainPage:
             self,
             registration_user
     ):
-        """Logout by existent user."""
-        registration_user.logout()
-               
+        """Logout by existent user.
         
-        assert registration_user.has_button_sign_in_and_sign_out()
+        Steps:
+        1. Press the button «Вход и регистрация».
+        2. Fill the fields up with existent user data.
+        3. Press the button «Войти».
+        4. Press the button «Выйти».
+        Check:
+        1. On the right corner near the button «Разместить объявление» 
+            don't display a user avatar and a the name `User`.
+        2. On the right corner near the button «Разместить объявление» 
+            display the button «Вход и регистрация».
+        """
+        registration_user.logout()
+
+        main_page = MainPage(
+             registration_user.driver,
+             registration_user.driver.current_url
+        )
+
+        time.sleep(3)
+        
+        assert (main_page.is_avatar_user_dislocated() and
+                main_page.is_user_name_dislocated() and
+                main_page.has_button_sign_in_and_sign_out())
 
     def test_announcement_guest_user_login_only(
             self,

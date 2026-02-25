@@ -82,8 +82,8 @@ class MainPage(BasePage):
         return self.driver
 
     def get_user_name(self):
-        user_name = self.wait_element_located(MainPageLocators.USER_NAME)
-        return user_name.text
+        user_name = self.wait_element_located(MainPageLocators.USER_NAME).text
+        return user_name
     
     def get_error_message_email_field(self):
         error_mes = self.wait_element_located(
@@ -126,3 +126,12 @@ class MainPage(BasePage):
         return self.wait_element_located(
             MainPageLocators.AVATAR_SVG
         )
+    
+    def is_avatar_user_dislocated(self):
+        return self.wait_element_dislocated(
+            MainPageLocators.AVATAR_SVG
+        )
+
+    def is_user_name_dislocated(self):
+        return self.wait_element_dislocated(MainPageLocators.USER_NAME)
+    
