@@ -41,11 +41,22 @@ class TestMainPage:
             self,
             sign_up_page
     ):
-        """Registration with INcorrect email."""
+        """Registration with INcorrect email.
+        
+        Steps:
+        1. Press the button «Вход и регистрация».
+        2. Press the button «Нет аккаунта».
+        3. Fill the email field up with incorrect data.
+        4. Press the button «Создать аккаунт».
+        Check:
+        The fields `Email`, `Пароль`, `Повторите пароль` are marked by 
+        red color and under the field `Email` showed up the message `Ошибка`.
+        """
         sign_up_page.fill_sign_up_form(data.user.user_with_incorrect_email)
         actual_error_message = sign_up_page.get_error_message_email_field()
 
-        assert actual_error_message == data.ERROR_MESSAGE_EMAIL_FIELD
+        assert (actual_error_message == data.ERROR_MESSAGE_EMAIL_FIELD and
+                sign_up_page.has_error_class_in_fields())
 
     def test_registration_by_existent_user(
             self,

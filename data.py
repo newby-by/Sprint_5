@@ -33,6 +33,7 @@ CITIES = {
 # Start page
 TITLE = 'React App'
 ERROR_MESSAGE_EMAIL_FIELD = 'Ошибка'
+ERROR_CLASS = 'input_inputError'
 
 ## Expected user name in header
 USER_NAME = 'User.'

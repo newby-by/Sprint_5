@@ -3,8 +3,12 @@ from selenium.webdriver.common.by import By
 
 class RegistrationFormLocators:
     EMAIL = (By.XPATH, ".//input[@name='email']")
+    PARENT_EMAIL_NODE = (By.XPATH, ".//input[@name='email']/..")
     PASSWORD = (By.XPATH, ".//input[@name='password']")
+    PARENT_PASSWORD_NODE = (By.XPATH, ".//input[@name='password']/..")
     SUBMIT_PASSWORD = (By.XPATH, ".//input[@name='submitPassword']")
+    PARENT_SUBMIT_PASSWORD_NODE = (By.XPATH,
+                                   ".//input[@name='submitPassword']/..")
     SIGN_IN_BUTTON = (By.XPATH, ".//button[text()='Войти']")
     CREATE_ACCOUNT_BUTTON = (By.XPATH, ".//button[text()='Создать аккаунт']")
     ERROR_MESSAGE_EMAIL = (By.XPATH, ".//span[text()='Ошибка']")
@@ -12,6 +16,7 @@ class RegistrationFormLocators:
         By.XPATH,
         ".//h1[text()='Чтобы разместить объявление, авторизуйтесь']"
     )
+
 
 
 class MainPageLocators:
