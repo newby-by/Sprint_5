@@ -34,7 +34,7 @@ TITLE = 'React App'
 ERROR_MESSAGE_EMAIL_FIELD = 'Ошибка'
 ERROR_CLASS = 'input_inputError'
 
-## Expected user name in header
+# Expected user name in header
 USER_NAME = 'User.'
 
 
@@ -44,19 +44,19 @@ class Data(ABC):
 
 
 class User(Data):
-    
+
     def __init__(self):
         super().__init__()
         self._user = ...
 
     @property
     def user_with_correct_credentials(self):
-        return (self.faker.unique.email(), self.faker.password()) 
-    
+        return (self.faker.unique.email(), self.faker.password())
+
     @property
     def user_with_incorrect_email(self):
-        return (self.faker.unique.email() + "1", self.faker.password()) 
-    
+        return (self.faker.unique.email() + "1", self.faker.password())
+
     @property
     def new(self):
         self._user = (self.faker.unique.email(), self.faker.password())
@@ -104,6 +104,6 @@ class Announcement(Data):
     @property
     def price(self):
         return self._price
-    
+
 
 announcement = Announcement()

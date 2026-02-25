@@ -18,7 +18,6 @@ class RegistrationFormLocators:
     )
 
 
-
 class MainPageLocators:
     USER_NAME = (By.XPATH, ".//h3[contains(@class, 'profileText')]")
     AVATAR_SVG = (By.XPATH, ".//*[@class='svgSmall']")
@@ -75,7 +74,7 @@ class CreateListingLocators:
         By.XPATH,
         ".//form/div[contains(@class, 'dropDownMenu')]/div[2]/button[6]"
     )
-    CITIES = (CITY_MOSCOW, CITY_SPB, CITY_NOVOSIB, 
+    CITIES = (CITY_MOSCOW, CITY_SPB, CITY_NOVOSIB,
               CITY_EBURG, CITY_BOTTOM_NEW_CITY, CITY_KAZAN, )
     DESCRIPTION = (By.XPATH, ".//textarea[@name='description']")
     PRICE = (By.XPATH, ".//input[@name='price']")
@@ -89,4 +88,3 @@ class AccountUserLocators:
     NAME_GOODS = (By.XPATH, ".//div[@class='about']/h2")
     CITY_GOODS = (By.XPATH, ".//div[@class='about']/h3")
     PRICE_GOODS = (By.XPATH, ".//div[@class='price']/h2")
-    

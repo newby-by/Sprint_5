@@ -8,12 +8,12 @@ from pages.main_page import MainPage
 
 @pytest.fixture(scope='function')
 def driver():
-    chromedriver_autoinstaller.install() 
+    chromedriver_autoinstaller.install()
     driver = webdriver.Chrome()
 
     yield driver
 
-    # driver is None or 
+    # driver is None or
     driver.quit()
 
 
@@ -46,4 +46,3 @@ def registration_user(sign_up_page):
 def logout(registration_user):
     registration_user.logout()
     yield registration_user
-
