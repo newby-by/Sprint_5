@@ -10,9 +10,11 @@ class CreateListingPage(BasePage):
         element.send_keys(name)
 
         return self
-    
+
     def set_category(self, category):
-        drop_down = self.wait_element_located(CreateListingLocators.CATEGORY_OPEN)
+        drop_down = self.wait_element_located(
+            CreateListingLocators.CATEGORY_OPEN
+        )
         drop_down.click()
 
         select = self.wait_element_located(
@@ -20,7 +22,7 @@ class CreateListingPage(BasePage):
         )
         select.click()
         return self
-    
+
     def set_condition_goods(self, condition):
         radio_button = self.wait_element_located(
             (CreateListingLocators.
@@ -28,7 +30,7 @@ class CreateListingPage(BasePage):
         )
         radio_button.click()
         return self
-    
+
     def set_city(self, city):
 
         radio_button = self.wait_element_located(
@@ -47,18 +49,15 @@ class CreateListingPage(BasePage):
         element.send_keys(description)
 
         return self
-    
+
     def set_price(self, price):
         element = self.wait_element_located(CreateListingLocators.PRICE)
         element.send_keys(price)
 
         return self
-    
-    
+
     def publish(self):
         btn = self.wait_element_located(CreateListingLocators.CREATE_BUTTON)
         btn.click()
 
         return self.driver
-    
-

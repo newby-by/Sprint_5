@@ -1,10 +1,9 @@
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support.expected_conditions import (
+    element_to_be_clickable,
     presence_of_element_located,
     visibility_of_element_located,
-    element_to_be_clickable,
 )
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BasePage:
@@ -15,31 +14,31 @@ class BasePage:
 
     def open(self):
         self.driver.get(self.url)
-    
+
     def wait_element_located(self, locator, time=5):
         element = WebDriverWait(self.driver, time).until(
             presence_of_element_located(locator)
         )
-        return element 
-    
+        return element
+
     def wait_element_dislocated(self, locator, time=5):
         element = WebDriverWait(self.driver, time).until_not(
             presence_of_element_located(locator)
         )
-        return element 
-    
+        return element
+
     def wait_element_visibility(self, locator, time=5):
         element = WebDriverWait(self.driver, time).until(
             visibility_of_element_located(locator)
         )
-        return element 
+        return element
 
     def wait_element_clickable(self, locator, time=5):
         element = WebDriverWait(self.driver, time).until(
             element_to_be_clickable(locator)
         )
-        return element 
-    
+        return element
+
     def scroll_into_element(self, locator):
         btn = self.driver.find_element(*locator)
         self.driver.execute_script(

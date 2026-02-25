@@ -19,7 +19,6 @@ class AccountUserPage(BasePage):
             *AccountUserLocators.PRICE_GOODS
         ).text.split()[0]
 
-        return (actual_name == name and 
-                actual_city == city and 
+        return (actual_name == name and
+                actual_city == city and
                 int(actual_price) == price)
-
