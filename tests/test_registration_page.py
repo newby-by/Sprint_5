@@ -86,13 +86,26 @@ class TestMainPage:
             self,
             logout
     ):
-        """Login by existent user."""
+        """Login by existent user.
+        
+        Steps:
+        1. Press the button «Вход и регистрация».
+        2. Fill the fields up with existent user data.
+        3. Press the button «Войти».
+        Check:
+        1. Redirect to the main page app.
+        2. On the right corner near the button «Разместить объявление» 
+            display a user avatar and a the name `User`.
+        """
         logout.go_to_sign_in_form()
         logout.fill_sign_in_form(data.user.existent)
        
         actual_user_name = logout.get_user_name()
 
-        assert actual_user_name == data.USER_NAME
+        assert (
+            logout.has_avatar_user_located() and
+            actual_user_name == data.USER_NAME
+        )
     
     def test_logout(
             self,
