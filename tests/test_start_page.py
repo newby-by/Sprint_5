@@ -139,6 +139,7 @@ class TestMainPage:
             main_page
     ):
         """Login by existent user.
+
         Steps:
         1. Press the button «Разместить объявление».
         Check:
@@ -160,8 +161,7 @@ class TestMainPage:
             name, description, price, categories, city, choose.
         3. Choose 'new' or 'used'.
         4. Press publish.
-
-        Asserts:
+        Check:
         The name, the city and the price have expected values.
         """
         logout.go_to_sign_in_form()
