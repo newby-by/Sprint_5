@@ -117,3 +117,7 @@ For testing we used libraries `pytest` (latest version), `selenium` (ver. 3.141.
 
 ## Miscellenious
 1. [Faker docs](https://faker.readthedocs.io/en/master/)
+=======
+For testing we used libraries `pytest` (latest version), `selenium` (ver. 3.141.0).
+
+**Note** The library selenium uses `urllib3` with the version `1.26.16`.
