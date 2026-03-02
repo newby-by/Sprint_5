@@ -51,7 +51,8 @@ class TestMainPage:
         sign_up_page.fill_sign_up_form(user.user_with_incorrect_email)
         actual_error_message = sign_up_page.get_error_message_email_field()
 
-        assert (actual_error_message == HomePageData.ERROR_MESSAGE_EMAIL_FIELD and
+        assert (actual_error_message ==
+                HomePageData.ERROR_MESSAGE_EMAIL_FIELD and
                 sign_up_page.has_error_class_in_fields())
 
     def test_registration_by_existent_user(
@@ -75,7 +76,8 @@ class TestMainPage:
         logout.fill_sign_up_form(user.existent)
         actual_error_message = logout.get_error_message_email_field()
 
-        assert (actual_error_message == HomePageData.ERROR_MESSAGE_EMAIL_FIELD and
+        assert (actual_error_message ==
+                HomePageData.ERROR_MESSAGE_EMAIL_FIELD and
                 logout.has_error_class_in_fields())
 
     def test_login_by_existent_user(
@@ -166,7 +168,7 @@ class TestMainPage:
                 main_page.driver
         )
         anounce_page.set_name(expected_announcement.name)
-        anounce_page. set_category(expected_announcement.category)
+        anounce_page.set_category(expected_announcement.category)
         anounce_page.set_condition_goods(expected_announcement.condition)
         anounce_page.set_city(expected_announcement.city)
         anounce_page.set_description(expected_announcement.description)

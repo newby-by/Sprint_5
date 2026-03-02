@@ -14,7 +14,7 @@ class CreateListingPage(BasePage):
             CreateListingLocators.CATEGORY_OPEN
         )
         drop_down.click()
-        
+
         category = AnnouncementFormData.CATEGORIES[category] - 1
         select = self.wait_element_located(
             CreateListingLocators.CATEGORIES[category]

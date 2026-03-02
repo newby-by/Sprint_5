@@ -3,6 +3,7 @@ from abc import ABC
 
 from faker import Faker
 
+
 class UrlsMestro:
     BASE_URL = 'https://qa-desk.stand.praktikum-services.ru/'
 
