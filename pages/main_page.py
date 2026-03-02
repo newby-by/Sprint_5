@@ -110,9 +110,9 @@ class MainPage(BasePage):
         )
         class_for_submit_password = submit_password.get_attribute('class')
 
-        return (data.ERROR_CLASS in class_for_email and
-                data.ERROR_CLASS in class_for_password and
-                data.ERROR_CLASS in class_for_submit_password)
+        return (data.HomePageData.ERROR_CLASS in class_for_email and
+                data.HomePageData.ERROR_CLASS in class_for_password and
+                data.HomePageData.ERROR_CLASS in class_for_submit_password)
 
     def has_button_sign_in_and_sign_out(self):
         return self.wait_element_located(

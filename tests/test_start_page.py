@@ -1,4 +1,4 @@
-import data
+from data import HomePageData, expected_announcement, user
 from pages.account_user_page import AccountUserPage
 from pages.create_listing_page import CreateListingPage
 from pages.main_page import MainPage
@@ -23,17 +23,14 @@ class TestMainPage:
                display a user avatar and a the name `User`.
         """
         sign_up_page.fill_sign_up_form(
-            data.user.user_with_correct_credentials
+            user.user_with_correct_credentials
         )
-        main_page = MainPage(
-            sign_up_page.driver,
-            sign_up_page.driver.current_url
-        )
+        main_page = MainPage(sign_up_page.driver)
         actual_user_name = main_page.get_user_name()
 
         assert (
             main_page.has_avatar_user_located() and
-            actual_user_name == data.USER_NAME
+            actual_user_name == HomePageData.USER_NAME
         )
 
     def test_registration_with_incorrect_email(
@@ -51,10 +48,11 @@ class TestMainPage:
         The fields `Email`, `Пароль`, `Повторите пароль` are marked by
         red color and under the field `Email` showed up the message `Ошибка`.
         """
-        sign_up_page.fill_sign_up_form(data.user.user_with_incorrect_email)
+        sign_up_page.fill_sign_up_form(user.user_with_incorrect_email)
         actual_error_message = sign_up_page.get_error_message_email_field()
 
-        assert (actual_error_message == data.ERROR_MESSAGE_EMAIL_FIELD and
+        assert (actual_error_message ==
+                HomePageData.ERROR_MESSAGE_EMAIL_FIELD and
                 sign_up_page.has_error_class_in_fields())
 
     def test_registration_by_existent_user(
@@ -75,10 +73,11 @@ class TestMainPage:
         logout.go_to_sign_in_form()
         logout.go_to_sign_up_form()
 
-        logout.fill_sign_up_form(data.user.existent)
+        logout.fill_sign_up_form(user.existent)
         actual_error_message = logout.get_error_message_email_field()
 
-        assert (actual_error_message == data.ERROR_MESSAGE_EMAIL_FIELD and
+        assert (actual_error_message ==
+                HomePageData.ERROR_MESSAGE_EMAIL_FIELD and
                 logout.has_error_class_in_fields())
 
     def test_login_by_existent_user(
@@ -97,13 +96,13 @@ class TestMainPage:
             display a user avatar and a the name `User`.
         """
         logout.go_to_sign_in_form()
-        logout.fill_sign_in_form(data.user.existent)
+        logout.fill_sign_in_form(user.existent)
 
         actual_user_name = logout.get_user_name()
 
         assert (
             logout.has_avatar_user_located() and
-            actual_user_name == data.USER_NAME
+            actual_user_name == HomePageData.USER_NAME
         )
 
     def test_logout(
@@ -125,10 +124,7 @@ class TestMainPage:
         """
         registration_user.logout()
 
-        main_page = MainPage(
-             registration_user.driver,
-             registration_user.driver.current_url
-        )
+        main_page = MainPage(registration_user.driver)
 
         assert (main_page.is_avatar_user_dislocated() and
                 main_page.is_user_name_dislocated() and
@@ -165,41 +161,31 @@ class TestMainPage:
         The name, the city and the price have expected values.
         """
         logout.go_to_sign_in_form()
-        logout.fill_sign_in_form(data.user.existent)
-        main_page = MainPage(
-            logout.driver,
-            logout.driver.current_url
-        )
+        logout.fill_sign_in_form(user.existent)
+        main_page = MainPage(logout.driver)
         main_page.go_to_announcement()
         anounce_page: CreateListingPage = CreateListingPage(
-                main_page.driver,
-                main_page.driver.current_url
+                main_page.driver
         )
-        expected_announce = data.announcement
-        (anounce_page.
-            set_name(expected_announce.name).
-            set_category(expected_announce.category).
-            set_condition_goods(expected_announce.condition).
-            set_city(expected_announce.city).
-            set_description(expected_announce.description).
-            set_price(expected_announce.price))
+        anounce_page.set_name(expected_announcement.name)
+        anounce_page.set_category(expected_announcement.category)
+        anounce_page.set_condition_goods(expected_announcement.condition)
+        anounce_page.set_city(expected_announcement.city)
+        anounce_page.set_description(expected_announcement.description)
+        anounce_page.set_price(expected_announcement.price)
         anounce_page.publish()
 
-        main_page = MainPage(
-                anounce_page.driver,
-                anounce_page.driver.current_url
-                )
+        main_page = MainPage(anounce_page.driver)
 
         main_page.scroll_up()
         main_page.go_to_account_page()
         account_page: AccountUserPage = AccountUserPage(
-                anounce_page.driver,
-                anounce_page.driver.current_url
+                anounce_page.driver
         )
         account_page.scroll_to_card()
 
         assert account_page.has_announcement(
-                expected_announce.name,
-                expected_announce.city,
-                expected_announce.price
+                expected_announcement.name,
+                expected_announcement.city,
+                expected_announcement.price
         )

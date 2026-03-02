@@ -6,7 +6,6 @@ class AccountUserPage(BasePage):
 
     def scroll_to_card(self):
         self.scroll_into_element(AccountUserLocators.TITLE_CARDS)
-        return self.driver
 
     def has_announcement(self, name, city, price):
         self.wait_element_located(AccountUserLocators.CARDS)
