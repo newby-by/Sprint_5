@@ -176,13 +176,12 @@ class TestMainPage:
                 main_page.driver.current_url
         )
         expected_announce = data.announcement
-        (anounce_page.
-            set_name(expected_announce.name).
-            set_category(expected_announce.category).
-            set_condition_goods(expected_announce.condition).
-            set_city(expected_announce.city).
-            set_description(expected_announce.description).
-            set_price(expected_announce.price))
+        anounce_page.set_name(expected_announce.name)
+        anounce_page. set_category(expected_announce.category)
+        anounce_page.set_condition_goods(expected_announce.condition)
+        anounce_page.set_city(expected_announce.city)
+        anounce_page.set_description(expected_announce.description)
+        anounce_page.set_price(expected_announce.price)
         anounce_page.publish()
 
         main_page = MainPage(
