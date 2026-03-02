@@ -25,10 +25,7 @@ class TestMainPage:
         sign_up_page.fill_sign_up_form(
             data.user.user_with_correct_credentials
         )
-        main_page = MainPage(
-            sign_up_page.driver,
-            sign_up_page.driver.current_url
-        )
+        main_page = MainPage(sign_up_page.driver)
         actual_user_name = main_page.get_user_name()
 
         assert (
@@ -125,10 +122,7 @@ class TestMainPage:
         """
         registration_user.logout()
 
-        main_page = MainPage(
-             registration_user.driver,
-             registration_user.driver.current_url
-        )
+        main_page = MainPage(registration_user.driver)
 
         assert (main_page.is_avatar_user_dislocated() and
                 main_page.is_user_name_dislocated() and
@@ -166,14 +160,10 @@ class TestMainPage:
         """
         logout.go_to_sign_in_form()
         logout.fill_sign_in_form(data.user.existent)
-        main_page = MainPage(
-            logout.driver,
-            logout.driver.current_url
-        )
+        main_page = MainPage(logout.driver)
         main_page.go_to_announcement()
         anounce_page: CreateListingPage = CreateListingPage(
-                main_page.driver,
-                main_page.driver.current_url
+                main_page.driver
         )
         expected_announce = data.announcement
         anounce_page.set_name(expected_announce.name)
@@ -184,16 +174,12 @@ class TestMainPage:
         anounce_page.set_price(expected_announce.price)
         anounce_page.publish()
 
-        main_page = MainPage(
-                anounce_page.driver,
-                anounce_page.driver.current_url
-                )
+        main_page = MainPage(anounce_page.driver)
 
         main_page.scroll_up()
         main_page.go_to_account_page()
         account_page: AccountUserPage = AccountUserPage(
-                anounce_page.driver,
-                anounce_page.driver.current_url
+                anounce_page.driver
         )
         account_page.scroll_to_card()
 

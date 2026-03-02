@@ -19,8 +19,8 @@ def driver():
 
 @pytest.fixture(scope='function')
 def main_page(driver):
-    start_page = MainPage(driver, data.BASE_URL)
-    start_page.open()
+    start_page = MainPage(driver)
+    start_page.open(data.BASE_URL)
     yield start_page
 
 
