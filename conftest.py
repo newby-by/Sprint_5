@@ -2,7 +2,7 @@ import chromedriver_autoinstaller
 import pytest
 from selenium import webdriver
 
-import data
+from data import UrlsMestro, user
 from pages.main_page import MainPage
 
 
@@ -20,7 +20,7 @@ def driver():
 @pytest.fixture(scope='function')
 def main_page(driver):
     start_page = MainPage(driver)
-    start_page.open(data.BASE_URL)
+    start_page.open(UrlsMestro.BASE_URL)
     return start_page
 
 
@@ -38,7 +38,7 @@ def sign_up_page(sign_in_page):
 
 @pytest.fixture(scope='function')
 def registration_user(sign_up_page):
-    sign_up_page.fill_sign_up_form(data.user.new)
+    sign_up_page.fill_sign_up_form(user.new)
     return sign_up_page
 
 

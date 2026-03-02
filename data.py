@@ -3,39 +3,39 @@ from abc import ABC
 
 from faker import Faker
 
-
-BASE_URL = 'https://qa-desk.stand.praktikum-services.ru/'
-
-CATEGORIES = {
-    'Авто': 1,
-    'Книги': 2,
-    'Садоводство': 3,
-    'Хобби': 4,
-    'Технологии': 5,
-}
-
-CONDITION_GOODS = {
-    'Новый': 1,
-    'Б/У': 2,
-}
-
-CITIES = {
-    'Москва': 1,
-    'Санкт-Петербург': 2,
-    'Новосибирск': 3,
-    'Екатеринбург': 4,
-    'Нижний Новгород': 5,
-    'Казань': 6,
-}
+class UrlsMestro:
+    BASE_URL = 'https://qa-desk.stand.praktikum-services.ru/'
 
 
-# Start page
-TITLE = 'React App'
-ERROR_MESSAGE_EMAIL_FIELD = 'Ошибка'
-ERROR_CLASS = 'input_inputError'
+class AnnouncementFormData:
+    CATEGORIES = {
+        'Авто': 1,
+        'Книги': 2,
+        'Садоводство': 3,
+        'Хобби': 4,
+        'Технологии': 5,
+    }
 
-# Expected user name in header
-USER_NAME = 'User.'
+    CONDITION_GOODS = {
+        'Новый': 1,
+        'Б/У': 2,
+    }
+
+    CITIES = {
+        'Москва': 1,
+        'Санкт-Петербург': 2,
+        'Новосибирск': 3,
+        'Екатеринбург': 4,
+        'Нижний Новгород': 5,
+        'Казань': 6,
+    }
+
+
+class HomePageData:
+    TITLE = 'React App'
+    ERROR_MESSAGE_EMAIL_FIELD = 'Ошибка'
+    ERROR_CLASS = 'input_inputError'
+    USER_NAME = 'User.'
 
 
 class Data(ABC):
@@ -75,9 +75,11 @@ class Announcement(Data):
     def __init__(self):
         super().__init__()
         self._name = self.faker.sentence()
-        self._category = random.choice(list(CATEGORIES))
-        self._condition = random.choice(list(CONDITION_GOODS))
-        self._city = random.choice(list(CITIES))
+        self._category = random.choice(list(AnnouncementFormData.CATEGORIES))
+        self._condition = random.choice(
+            list(AnnouncementFormData.CONDITION_GOODS)
+        )
+        self._city = random.choice(list(AnnouncementFormData.CITIES))
         self._description = self.faker.paragraph()
         self._price = self.faker.random_int(min=0, max=999)
 
@@ -106,4 +108,4 @@ class Announcement(Data):
         return self._price
 
 
-announcement = Announcement()
+expected_announcement = Announcement()

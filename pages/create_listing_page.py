@@ -1,6 +1,6 @@
-import data
-from pages.base_page import BasePage
+from data import AnnouncementFormData
 from locators import CreateListingLocators
+from pages.base_page import BasePage
 
 
 class CreateListingPage(BasePage):
@@ -14,16 +14,17 @@ class CreateListingPage(BasePage):
             CreateListingLocators.CATEGORY_OPEN
         )
         drop_down.click()
-
+        
+        category = AnnouncementFormData.CATEGORIES[category] - 1
         select = self.wait_element_located(
-            CreateListingLocators.CATEGORIES[data.CATEGORIES[category] - 1]
+            CreateListingLocators.CATEGORIES[category]
         )
         select.click()
 
     def set_condition_goods(self, condition):
+        condition = AnnouncementFormData.CONDITION_GOODS[condition] - 1
         radio_button = self.wait_element_located(
-            (CreateListingLocators.
-             CONDITIONS[data.CONDITION_GOODS[condition] - 1])
+            CreateListingLocators.CONDITIONS[condition]
         )
         radio_button.click()
 
@@ -34,8 +35,9 @@ class CreateListingPage(BasePage):
         )
         radio_button.click()
 
+        city = AnnouncementFormData.CITIES[city] - 1
         select = self.wait_element_located(
-            CreateListingLocators.CITIES[data.CITIES[city] - 1]
+            CreateListingLocators.CITIES[city]
         )
         select.click()
 
