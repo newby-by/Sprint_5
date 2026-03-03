@@ -28,6 +28,6 @@ class CreateListingPage(BasePage):
 
     def set_price(self, price):
         self.fill_field(CreateListingLocators.PRICE, price)
-        
+
     def publish(self):
         self.click(CreateListingLocators.CREATE_BUTTON)
