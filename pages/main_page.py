@@ -1,5 +1,3 @@
-from selenium.common.exceptions import StaleElementReferenceException
-
 import data
 from locators import MainPageLocators, RegistrationFormLocators
 from pages.base_page import BasePage
@@ -8,34 +6,19 @@ from pages.base_page import BasePage
 class MainPage(BasePage):
 
     def go_to_sign_in_form(self):
-        btn = self.wait_element_located(MainPageLocators.SIGNIN_SIGNUP_BUTTON)
-        btn.click()
+        self.click(MainPageLocators.SIGNIN_SIGNUP_BUTTON)
 
     def logout(self):
-        btn = self.wait_element_clickable(MainPageLocators.LOGOUT_BUTTON)
-        btn.click()
+        self.click(MainPageLocators.LOGOUT_BUTTON)
 
     def go_to_sign_up_form(self):
-        btn = self.wait_element_clickable(MainPageLocators.SIGNUP_BUTTON)
-        btn.click()
+        self.click(MainPageLocators.SIGNUP_BUTTON)
 
     def go_to_announcement(self):
-        btn = self.wait_element_clickable(MainPageLocators.ANNOUNCEMENT_BUTTON)
-        try:
-            btn.click()
-        except StaleElementReferenceException:
-            btn = self.driver.find_element(
-                *MainPageLocators.ANNOUNCEMENT_BUTTON
-            )
-            btn.click()
+        self.click(MainPageLocators.ANNOUNCEMENT_BUTTON)
 
     def go_to_account_page(self):
-        btn = self.wait_element_located(MainPageLocators.ACCOUNT_BUTTON)
-        try:
-            btn.click()
-        except Exception:
-            btn = self.wait_element_located(MainPageLocators.ACCOUNT_BUTTON)
-            btn.click()
+        self.click(MainPageLocators.ACCOUNT_BUTTON)
 
     def scroll_up(self):
         self.wait_element_located(MainPageLocators.ACCOUNT_BUTTON)
@@ -44,43 +27,23 @@ class MainPage(BasePage):
     def fill_sign_up_form(self, user_data):
         email, password = user_data
 
-        email_field = self.wait_element_located(RegistrationFormLocators.EMAIL)
-        email_field.send_keys(email)
-
-        self.driver.find_element(
-            *RegistrationFormLocators.PASSWORD
-        ).send_keys(password)
-        self.driver.find_element(
-            *RegistrationFormLocators.SUBMIT_PASSWORD
-        ).send_keys(password)
-
-        self.driver.find_element(
-            *RegistrationFormLocators.CREATE_ACCOUNT_BUTTON
-        ).click()
+        self.fill_field(RegistrationFormLocators.EMAIL, email)
+        self.fill_field(RegistrationFormLocators.PASSWORD, password)
+        self.fill_field(RegistrationFormLocators.SUBMIT_PASSWORD, password)
+        self.click(RegistrationFormLocators.CREATE_ACCOUNT_BUTTON)
 
     def fill_sign_in_form(self, user_data):
         email, password = user_data
 
-        email_field = self.wait_element_located(RegistrationFormLocators.EMAIL)
-        email_field.send_keys(email)
-
-        self.driver.find_element(
-            *RegistrationFormLocators.PASSWORD
-        ).send_keys(password)
-        self.driver.find_element(
-            *RegistrationFormLocators.SIGN_IN_BUTTON
-        ).click()
+        self.fill_field(RegistrationFormLocators.EMAIL, email)
+        self.fill_field(RegistrationFormLocators.PASSWORD, password)
+        self.click(RegistrationFormLocators.SIGN_IN_BUTTON)
 
     def get_user_name(self):
-        user_name = self.wait_element_located(MainPageLocators.USER_NAME).text
-        return user_name
+        return self.get_text(MainPageLocators.USER_NAME)
 
     def get_error_message_email_field(self):
-        error_mes = self.wait_element_located(
-            RegistrationFormLocators.ERROR_MESSAGE_EMAIL
-        )
-
-        return error_mes.text
+        return self.get_text(RegistrationFormLocators.ERROR_MESSAGE_EMAIL)
 
     def has_error_class_in_fields(self):
         email = self.wait_element_located(

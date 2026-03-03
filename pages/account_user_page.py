@@ -10,13 +10,9 @@ class AccountUserPage(BasePage):
     def has_announcement(self, name, city, price):
         self.wait_element_located(AccountUserLocators.CARDS)
 
-        card = self.driver.find_element(*AccountUserLocators.CARDS)
-
-        actual_name = card.find_element(*AccountUserLocators.NAME_GOODS).text
-        actual_city = card.find_element(*AccountUserLocators.CITY_GOODS).text
-        actual_price = card.find_element(
-            *AccountUserLocators.PRICE_GOODS
-        ).text.split()[0]
+        actual_name = self.get_text(AccountUserLocators.NAME_GOODS)
+        actual_city = self.get_text(AccountUserLocators.CITY_GOODS)
+        actual_price = self.get_text(AccountUserLocators.PRICE_GOODS).split()[0]
 
         return (actual_name == name and
                 actual_city == city and
