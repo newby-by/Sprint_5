@@ -11,19 +11,13 @@ class MainPage(BasePage):
         btn = self.wait_element_located(MainPageLocators.SIGNIN_SIGNUP_BUTTON)
         btn.click()
 
-        return self.driver
-
     def logout(self):
         btn = self.wait_element_clickable(MainPageLocators.LOGOUT_BUTTON)
         btn.click()
 
-        return self.driver
-
     def go_to_sign_up_form(self):
         btn = self.wait_element_clickable(MainPageLocators.SIGNUP_BUTTON)
         btn.click()
-
-        return self.driver
 
     def go_to_announcement(self):
         btn = self.wait_element_clickable(MainPageLocators.ANNOUNCEMENT_BUTTON)
@@ -34,7 +28,6 @@ class MainPage(BasePage):
                 *MainPageLocators.ANNOUNCEMENT_BUTTON
             )
             btn.click()
-        return self.driver
 
     def go_to_account_page(self):
         btn = self.wait_element_located(MainPageLocators.ACCOUNT_BUTTON)
@@ -44,12 +37,9 @@ class MainPage(BasePage):
             btn = self.wait_element_located(MainPageLocators.ACCOUNT_BUTTON)
             btn.click()
 
-        return self.driver
-
     def scroll_up(self):
         self.wait_element_located(MainPageLocators.ACCOUNT_BUTTON)
         self.scroll_into_element(MainPageLocators.ACCOUNT_BUTTON)
-        return self.driver
 
     def fill_sign_up_form(self, user_data):
         email, password = user_data
@@ -67,7 +57,6 @@ class MainPage(BasePage):
         self.driver.find_element(
             *RegistrationFormLocators.CREATE_ACCOUNT_BUTTON
         ).click()
-        return self.driver
 
     def fill_sign_in_form(self, user_data):
         email, password = user_data
@@ -81,7 +70,6 @@ class MainPage(BasePage):
         self.driver.find_element(
             *RegistrationFormLocators.SIGN_IN_BUTTON
         ).click()
-        return self.driver
 
     def get_user_name(self):
         user_name = self.wait_element_located(MainPageLocators.USER_NAME).text
